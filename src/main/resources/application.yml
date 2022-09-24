@@ -1,0 +1,9 @@
+server:
+  port: 8888
+spring:
+  mvc:
+
+
+
+front:
+  base_url: http://localhost:3000
