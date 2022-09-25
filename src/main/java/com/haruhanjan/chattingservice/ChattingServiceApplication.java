@@ -1,4 +1,4 @@
-package com.example.chattingservice;
+package com.haruhanjan.chattingservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

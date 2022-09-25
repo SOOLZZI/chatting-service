@@ -1,4 +1,4 @@
-package com.example.chattingservice.controller;
+package com.haruhanjan.chattingservice.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,6 +11,6 @@ public class ChatController {
 
     @GetMapping
     public String requestChat(HttpServletRequest req, HttpServletResponse res){
-        return "chat";
+        return "test";
     }
 }

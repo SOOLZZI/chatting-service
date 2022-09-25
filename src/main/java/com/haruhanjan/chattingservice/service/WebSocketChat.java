@@ -1,4 +1,4 @@
-package com.example.chattingservice.service;
+package com.haruhanjan.chattingservice.service;
 
 import org.springframework.stereotype.Service;
 

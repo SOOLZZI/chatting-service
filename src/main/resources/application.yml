@@ -1,9 +1,18 @@
 server:
   port: 8888
+
 spring:
-  mvc:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/harudb?useSSL=false&useUnicode=true&serverTimezone=Asia/Seoul&allowPublicKeyRetrieval=true
+    username: root
+    password: 123qwe
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
 
 
 
 front:
-  base_url: http://localhost:3000
+  base_url: http://localhost:3000/

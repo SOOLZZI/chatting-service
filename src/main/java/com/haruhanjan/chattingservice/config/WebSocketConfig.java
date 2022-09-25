@@ -1,4 +1,4 @@
-package com.example.chattingservice.config;
+package com.haruhanjan.chattingservice.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

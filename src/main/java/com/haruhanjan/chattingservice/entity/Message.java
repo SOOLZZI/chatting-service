@@ -1,4 +1,4 @@
-package com.example.chattingservice.entity;
+package com.haruhanjan.chattingservice.entity;
 
 import lombok.NoArgsConstructor;
 

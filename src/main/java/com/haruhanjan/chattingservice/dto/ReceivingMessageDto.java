@@ -1,4 +1,4 @@
-package com.example.chattingservice.dto;
+package com.haruhanjan.chattingservice.dto;
 
 import lombok.Setter;
 

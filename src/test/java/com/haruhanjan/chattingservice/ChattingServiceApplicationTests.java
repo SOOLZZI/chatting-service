@@ -1,4 +1,4 @@
-package com.example.chattingservice;
+package com.haruhanjan.chattingservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
