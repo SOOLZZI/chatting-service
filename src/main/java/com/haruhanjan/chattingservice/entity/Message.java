@@ -14,7 +14,7 @@ public class Message {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="room_id")
-    private Room roomId;
+    private Room room;
 
     private String content;
     private Long userId;

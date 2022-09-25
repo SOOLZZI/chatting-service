@@ -1,5 +1,6 @@
 package com.haruhanjan.chattingservice.entity;
 
+import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -7,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +18,9 @@ public class Room {
     private Long fromUser;
     private Long toUser;
 
+    @Embedded
+    private BaseTimeEntity baseTimeEntity = new BaseTimeEntity();
+
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Message> messageList = new ArrayList<>();
+    private List<Message> room = new ArrayList<>();
 }

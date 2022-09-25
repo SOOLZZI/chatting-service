@@ -1,16 +1,28 @@
 package com.haruhanjan.chattingservice.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.haruhanjan.chattingservice.dto.ChatMessageDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.stereotype.Controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-@RestController("/api/chat")
+@Profile("stomp")
+@Controller
+@RequiredArgsConstructor
 public class ChatController {
 
-    @GetMapping
-    public String requestChat(HttpServletRequest req, HttpServletResponse res){
-        return "test";
+    private final SimpMessagingTemplate template;
+
+    @MessageMapping("/chat/join")
+    public void joinChat(ChatMessageDto dto){
+        Long userId = dto.getUserId();
+        dto.setContent(userId+"님이 입장하셨습니다.");
+        template.convertAndSend("/chat/room/"+dto.getRoomId(), dto);
+    }
+
+    @MessageMapping("/chat/message")
+    public void requestChat(ChatMessageDto dto){
+        template.convertAndSend("/chat/room/"+dto.getRoomId(), dto);
     }
 }
