@@ -12,7 +12,8 @@ spring:
     hibernate:
       ddl-auto: create
 
-
+  mustache:
+    suffix: .html
 
 front:
   base_url: http://localhost:3000/
