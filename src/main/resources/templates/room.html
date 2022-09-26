@@ -2,13 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{{room.name}}</title>
-    <script src="/webjars/jquery/dist/jquery.min.js"></script>
-    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <title>{{room.id}}</title>
 </head>
 <body>
-<h1>{{room.name}}{{room.id}}</h1>
-<div class="content" data-room-id="{{room.id}}" data-member="{{member}}">
+<h1>{{room.id}}</h1>
+<div class="content" data-room-id="{{room.id}}" data-member="{{userId}}">
     <ul class="chat_box">
     </ul>
     <input name="message">
@@ -40,7 +38,7 @@
 
         sendBtn.click(function () {
             var message = messageInput.val();
-            sock.send(JSON.stringify({roomId: roomId, type: 'CHAT', content: message, userId: member}));
+            sock.send(JSON.stringify({roomId: roomId, content: message, userId: member}));
             messageInput.val('');
         });
     });
