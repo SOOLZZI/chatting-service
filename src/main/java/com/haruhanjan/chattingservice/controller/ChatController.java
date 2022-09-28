@@ -1,28 +1,27 @@
 package com.haruhanjan.chattingservice.controller;
 
-import com.haruhanjan.chattingservice.dto.ChatMessageDto;
+import com.haruhanjan.chattingservice.service.ChatService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Profile;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-@Profile("stomp")
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/api/chat")
 public class ChatController {
+    private final ChatService chatService;
 
-    private final SimpMessagingTemplate template;
-
-    @MessageMapping("/chat/join")
-    public void joinChat(ChatMessageDto dto){
-        Long userId = dto.getUserId();
-        dto.setContent(userId+"님이 입장하셨습니다.");
-        template.convertAndSend("/chat/room/"+dto.getRoomId(), dto);
+    @GetMapping("/room")
+    public String room(Model model){
+        return "/room";
     }
 
-    @MessageMapping("/chat/message")
-    public void requestChat(ChatMessageDto dto){
-        template.convertAndSend("/chat/room/"+dto.getRoomId(), dto);
+    @GetMapping("/room/{roomId}")
+    public String enterRoom(@PathVariable Long roomId){
+        return "/room-detail";
     }
 }
