@@ -37,8 +37,6 @@ ext {
 }
 
 dependencies {
-    //view
-    implementation 'org.springframework.boot:spring-boot-starter-mustache'
     // web socket
     implementation 'org.webjars:sockjs-client:1.5.1'
     implementation 'org.webjars:stomp-websocket:2.3.4'

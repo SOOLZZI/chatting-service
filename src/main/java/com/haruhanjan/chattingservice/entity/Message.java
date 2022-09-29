@@ -1,5 +1,6 @@
 package com.haruhanjan.chattingservice.entity;
 
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -21,4 +22,11 @@ public class Message {
 
     @Embedded
     private BaseTimeEntity baseTimeEntity = new BaseTimeEntity();
+
+    @Builder
+    public Message(Room room, String content, Long userId) {
+        this.room = room;
+        this.content = content;
+        this.userId = userId;
+    }
 }
