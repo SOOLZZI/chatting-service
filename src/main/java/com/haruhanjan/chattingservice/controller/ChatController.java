@@ -1,6 +1,5 @@
 package com.haruhanjan.chattingservice.controller;
 
-import com.haruhanjan.chattingservice.dto.ChatMessageDto;
 import com.haruhanjan.chattingservice.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -16,8 +15,8 @@ public class ChatController {
     private final ChatService chatService;
 
     @PostMapping
-    public ResponseEntity<ChatMessageDto> createRoom(){
-        ChatMessageDto result = chatService.createRoom();
+    public ResponseEntity<Long> createChatRoom(){
+        Long result = chatService.createChatRoom();
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
     }
 }

@@ -1,6 +1,7 @@
 package com.haruhanjan.chattingservice.controller;
 
 import com.haruhanjan.chattingservice.dto.ChatMessageDto;
+import com.haruhanjan.chattingservice.mapper.MsgContentMapper;
 import com.haruhanjan.chattingservice.service.ChatService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,17 +16,18 @@ public class ChatMsgController {
 
     private final SimpMessageSendingOperations template;
     private final ChatService chatService;
+    private final MsgContentMapper msgContentMapper;
 
     @MessageMapping("/chat/join")
     public void joinChat(ChatMessageDto dto){
-        Long userId = dto.getUserId();
-        dto.setContent(userId+"님이 입장하셨습니다.");
-        template.convertAndSend("/sub/room/"+dto.getRoomId(), dto);
+        String content = msgContentMapper.setWelcomeMsg(dto);
+        template.convertAndSend("/sub/room/"+dto.getRoomId(), content);
     }
 
     @MessageMapping("/chat/message")
     public void requestChat(ChatMessageDto dto){
         chatService.saveMessage(dto);
-        template.convertAndSend("/sub/room/"+dto.getRoomId(), dto.getContent());
+        String content = msgContentMapper.setMsgContent(dto);
+        template.convertAndSend("/sub/room/"+dto.getRoomId(), content);
     }
 }
