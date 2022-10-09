@@ -29,4 +29,8 @@ public class Message {
         this.content = content;
         this.userId = userId;
     }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 }

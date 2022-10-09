@@ -8,6 +8,7 @@ import com.haruhanjan.chattingservice.repository.RoomRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 @Service
@@ -19,6 +20,9 @@ public class ChatService {
 
     public void saveMessage(ChatMessageDto dto) {
         Message entity = dto.toEntity();
+        Room room = roomRepository.findById(dto.getRoomId()).orElseThrow(EntityNotFoundException::new);
+        entity.setRoom(room);
+        messageRepository.save(entity);
     }
 
     @Transactional
